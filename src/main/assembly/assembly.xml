@@ -1,0 +1,43 @@
+<assembly>
+	<id>bundle</id>
+	<formats>
+		<format>zip</format>
+		<format>tar.gz</format>
+	</formats>
+	<baseDirectory>${project.build.finalName}</baseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}</directory>
+			<useDefaultExcludes>false</useDefaultExcludes>
+			<includes>
+				<include>**/*</include>
+				<include>readme.txt</include>
+				<include>license.txt</include>
+				<include>legal.txt</include>
+				<include>notice.txt</include>
+				<include>features.txt</include>
+			</includes>
+			<excludes>
+				<exclude>${project.build.directory}/**</exclude>
+				<exclude>.classpath</exclude>
+				<exclude>.project</exclude>
+				<exclude>.settings/**</exclude>
+				<exclude>gfembed*/**</exclude>
+				<exclude>tmp/**</exclude>
+			</excludes>
+		</fileSet>
+
+		<!-- also include any file that's potentially under src/bundle -->
+<!-- 		<fileSet> -->
+<!-- 			<directory>${basedir}/src/bundle</directory> -->
+<!-- 			<outputDirectory>/</outputDirectory> -->
+<!-- 			<includes> -->
+<!-- 				<include>**/*</include> -->
+<!-- 			</includes> -->
+			<!-- don't filter, don't change line endings, as this will corrupt images -->
+<!-- 			<filtered>false</filtered> -->
+<!-- 			<lineEnding>keep</lineEnding> -->
+<!-- 		</fileSet> -->
+	</fileSets>
+
+</assembly>

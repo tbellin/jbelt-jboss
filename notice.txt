@@ -1,0 +1,8 @@
+Note
+attualmente il persistence.xml è settato a create-drop
+
+Attenzione jbossHome è : <jbossHome>${user.home}/Develop/app/jboss-6.0.0.Final</jbossHome>
+
+I template della cartella site sono solo esemplificativi e non corrispondono alle specifiche del progetto
+
+Usare -Dpassword= nella run string per passare al file POM la password per il deploy sul server 

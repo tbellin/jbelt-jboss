@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/artificial/template.xhtml">
+	<ui:define name="login">
+		<h:form id="loginForm" rendered="#{not identity.loggedIn}">
+			<div id="logintxtblank">
+				<div id="loginheading">
+					<h4>User Login</h4>
+				</div>
+				<div id="username">#{bundles.messages.home_usernameLabel}:</div>
+				<div id="input">
+					<h:inputText id="name" value="#{credentials.username}" />
+					<!--							<label> <input name="textfield" type="text" class="input"-->
+					<!--								id="textfield" value="enter your user name" /> </label>-->
+				</div>
+				<div id="password">#{bundles.messages.home_passwordLabel}:</div>
+				<div id="input02">
+					<h:inputSecret id="password" value="#{credentials.password}"
+						redisplay="true" />
+					<!--							<label> <input name="textfield2" type="password"-->
+					<!--								class="input" id="textfield2" value="password" /> </label>-->
+				</div>
+				<div id="loginbutton">
+					<h:commandButton id="login" value="LOGIN"
+						action="#{identity.login}" class="login" />
+				</div>
+				<div id="member">Not yet a Member?</div>
+				<div id="register">
+					<!--									<h:link id="register" outcome="/register.xhtml" value="#{bundles.messages.home_registerAction}"/>-->
+				</div>
+			</div>
+		</h:form>
+		<h:form id="logoutForm" rendered="#{identity.loggedIn}">
+			<div id="logouttxtblank">
+				<div id="logoutheading">
+					<h4>Welcome, #{identity.user.id}!</h4>
+					<div id="registered">
+						<h:commandLink value="Log out" action="#{identity.logout}"
+							class="login" />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	<ui:define name="content">
+			Welcome To RichFaces 4.x Demo
+		</ui:define>
+
+	<ui:define name="sidebar">
+		<div class="lefttxtblank02">
+			<span class="errors"><h:messages
+					errorClass="error" styleClass="messages" id="messages"
+					globalOnly="true" /> </span>
+		</div>
+	</ui:define>
+
+
+</ui:composition>

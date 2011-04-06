@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:insert name="metadata" />
+<f:view contentType="text/html">
+	<ui:insert name="demoSampleParameters" />
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>#{bundles.messages.template_title}</title>
+		<link href="#{request.contextPath}/templates/artificial/style.css"
+			rel="stylesheet" type="text/css" />
+		<link rel="icon" href="#{request.contextPath}/templates/logo.ico" />
+	</h:head>
+
+	<body>
+		<div id="headerbg">
+			<div id="headerblank">
+				<div id="header">
+				
+							#{ home }
+				
+					<div id="menu">
+						<ul>
+							<li><a href="home.xhtml" class="menu">#{bundles.messages.jb_menu_home}</a>
+							</li>
+							<li><a href="#" class="menu">#{bundles.messages.jb_menu_people}</a>
+							</li>
+							<li><a href="#" class="menu">#{bundles.messages.jb_menu_product}</a>
+							</li>
+							<li><a href="#" class="menu">#{bundles.messages.jb_menu_task}</a>
+							</li>
+							<li><a href="#" class="menu">#{bundles.messages.jb_menu_document}</a>
+							</li>
+						</ul>
+					</div>
+					<div id="login">
+						<ui:insert name="login" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="contentbg">
+			<div id="contentblank">
+				<div id="content">
+					<div id="contentleft">
+						<div id="leftheading">
+							<h4>#{bundles.messages.jb_area_news}</h4>
+						</div>
+						<ui:insert name="head" />
+						<ui:insert name="sidebar">
+							#{'sidebar'}
+						</ui:insert>
+						<div class="lefttxtblank02">
+							<div class="lefticon">18</div>
+							<div class="leftboldtxtblank">
+								<div class="leftboldtxt">Qulvinar snterdum ...</div>
+								<div class="lefttxt">By Jack Son | 11:55 AM</div>
+							</div>
+							<div class="leftnormaltxt">Etiam auctor nisl adipiscing
+								sem. erat urna fringilla sit ametvestibulum.</div>
+							<div class="morebutton">
+								<a href="#" class="more">read more... </a>
+							</div>
+						</div>
+						<div id="leftnavheading">
+							<h4>#{bundles.messages.jb_area_resources}</h4>
+						</div>
+						<div id="leftnav">
+							<ul>
+								<li><a href="#" class="leftnav">Mauris neque egestas
+										justo </a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div id="contentmid">
+						<div class="midheading">
+							<h2>#{bundles.messages.jb_area_dashboard}</h2>
+						</div>
+						<ui:insert name="content">
+				     		Body content missed
+						</ui:insert>
+						<div id="comments">
+							<div id="addcomments">
+								<a href="#" class="addcomments">Add Commend</a>
+							</div>
+							<div id="morecomments">
+								<a href="#" class="morecomments">read more</a>
+							</div>
+						</div>
+						<div class="midheading">
+							<h2>
+								#{bundles.messages.jb_area_project}<span class="projectheading">Wednesday,
+									May 07, 2008</span>
+							</h2>
+						</div>
+						<div id="projectbg">
+							<div id="projectthumnail"></div>
+							<div id="projecttxtblank">
+								<div id="projecttxt">
+									<span class="projectboldtxt">Nulla venenati sed varius
+										an teproin</span> libero aecenas dapibus am gravida ante quis arcu
+									liquam eleifend. Donec at elit. Integer lectus dolor utrum a
+									volutpat .<br />
+								</div>
+								<div id="moreproject">
+									<a href="#" class="moreproject">read more</a>
+								</div>
+							</div>
+						</div>
+						<div id="purposenav">
+							<ul>
+								<li><a href="#" class="purposenav">Conubia nostra per
+										inceptos</a>
+								</li>
+								<li><a href="#" class="purposenav">Etiam porta ullam
+										sodales libe</a>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="#" class="purposenav">Lobortis ac mauris
+										mauris</a>
+								</li>
+								<li><a href="#" class="purposenav">Sed varius ante roin
+										sed ped</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- -->
+<!--					<div id="contentright" rendered="#{false}">-->
+<!--						<div class="rightheading">-->
+<!--							<h4>#{bundles.messages.jb_area_activity}</h4>-->
+<!--						</div>-->
+<!--						<div id="galleryblank">-->
+<!--							<div id="rightpic">-->
+<!--								<a href="#" class="rightpic"></a>-->
+<!--							</div>-->
+<!--							<div class="viewbutton">-->
+<!--								<a href="#" class="view"> view more</a>-->
+<!--							</div>-->
+<!--							<div class="rightheading">-->
+<!--								<h4>#{bundles.messages.jb_area_links}</h4>-->
+<!--							</div>-->
+<!--							<div class="righttxt">-->
+<!--								<span class="rightboldtxt">01. aliquet tempor nisi tellus-->
+<!--								</span>bibendum nunc. Sed venenatis scelerisque ipsum.-->
+<!--							</div>-->
+<!--							<div class="viewbuttonbot">-->
+<!--								<a href="#" class="view"> read more</a>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+					<!-- -->
+				</div>
+			</div>
+		</div>
+		<div id="footerbg">
+			<div id="footerblank">
+				<div id="footer">
+					<div id="footerbox">
+						<div class="footerheading">
+							<h4>PLM</h4>
+						</div>
+						<div class="footertxt">#{bundles.messages.jb_plm_footnote}</div>
+						<div class="footerbutton">
+							<a href="#" class="button">read more</a>
+						</div>
+					</div>
+					<div id="footermid">
+						<div class="footerheading">
+							<h4>ERP</h4>
+						</div>
+						<div class="footertxt">#{bundles.messages.jb_erp_footnote}</div>
+						<div class="footerbutton">
+							<a href="#" class="button">read more</a>
+						</div>
+					</div>
+					<div id="footerlast">
+						<div class="footerheading">
+							<h4>Intranet</h4>
+						</div>
+						<div class="footertxt">#{bundles.messages.jb_intranet_footnote}</div>
+						<div class="footerbutton">
+							<a href="#" class="button">read more</a>
+						</div>
+					</div>
+					<div id="footerlinks">
+						<a href="#{request.contextPath}" class="footerlinks">Home</a> | <a
+							href="http://www.ivy-tech.it" class="footerlinks">About Us</a> |
+						<a href="skype:tbellin-ivytech" class="footerlinks">Support</a> |
+						<a href="http://wiki.ivy-tech.it" class="footerlinks">Forum</a> |
+						<a href="http://sourceforge.net/projects/belt/"
+							class="footerlinks">Development</a> | <a
+							href="mailto:tizianobellin@yahoo.com" class="footerlinks">Conact
+							Us</a>
+					</div>
+					<div id="copyrights">© 2004-2011 Ivytech srl. All Rights
+						Reserved.</div>
+					<div id="designedby">
+						Produced by <a href="http://www.ivy-tech.it" target="_blank"
+							class="designedby">Ivytech srl</a> graphic by <a
+							href="http://www.smashingmagazine.com" target="_blank"
+							class="designedby">SmashingMagazine</a> powered by <a
+							href="http://www.jboss.org" target="_blank" class="designedby">JBoss
+							Seam</a>
+					</div>
+					<div id="validation">
+						<a href="http://validator.w3.org/check?uri=referer" class="xhtml">xhtml</a><a
+							href="http://jigsaw.w3.org/css-validator/check/referer"
+							class="css">css</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</f:view>
+</html>
