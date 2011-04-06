@@ -570,6 +570,15 @@ h1,h2,h3,h4,h5,h6,span
 		background-repeat:no-repeat;
 	}
 /*-------------------------------------------------------------------------------------LEFTRPART----------------------------------------------------------------END--*/	
+#contentmid-xxl
+	{
+		width:635px;
+		float:left;
+		margin:0px;
+		padding:34px 0 33px 34px;
+		background-image:url(images/vline.jpg);
+		background-repeat:repeat-y;
+	}
 #contentmid
 	{
 		width:435px;
@@ -1167,6 +1176,17 @@ h1,h2,h3,h4,h5,h6,span
 		padding:0 3px 0 3px;		
 	}
 #copyrights
+	{
+		width:715px;
+		float:left;
+		margin:5px 0 0 0;
+		padding:0px;
+		font-family:Arial;
+		font-size:11px;
+		color:#401400;
+		text-align:center;
+	}
+.copyrights
 	{
 		width:715px;
 		float:left;
