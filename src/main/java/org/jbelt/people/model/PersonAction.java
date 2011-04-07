@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -50,8 +51,9 @@ import org.jboss.seam.international.status.builder.TemplateMessage;
  * 
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
+@Named
 @Stateful
-@Model
+@SessionScoped
 public class PersonAction {
 	@PersistenceContext
 	private EntityManager em;
@@ -65,6 +67,7 @@ public class PersonAction {
     @Inject
     private Instance<TemplateMessage> messageBuilder;
 
+    
 	@Inject
 	private FacesContext facesContext;
 
@@ -113,6 +116,8 @@ public class PersonAction {
 	}
 
     public void nextPage() {
+		log.info("misura della lista :" + criteria.getPageSize());
+		log.info("con il criterio  :>" + criteria.getSearchPattern() + "<");
         criteria.nextPage();
         queryPersons(criteria);
     }
@@ -148,6 +153,9 @@ public class PersonAction {
 	}
 	
 	public void queryPersons(final SearchCriteria criteria) {
+		
+		log.info("misua della lista :" + criteria.getPageSize());
+		
 	        CriteriaBuilder builder = em.getCriteriaBuilder();
 	        CriteriaQuery<Person> cquery = builder.createQuery(Person.class);
 	        Root<Person> person = cquery.from(Person.class);
