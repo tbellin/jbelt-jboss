@@ -1,6 +1,6 @@
-# Seam Booking
+# JBelt 
 
-This is the classic Seam Booking example ported to Java EE 6 infused with Seam
+This is JBelt application ported to Java EE 6 infused with Seam
 3 portable extensions.  It's also been given a fresh new look. See features.txt
 for a list of features that are demonstrated by this example.
 
@@ -20,11 +20,11 @@ You deploy the application using this command:
 
     mvn package jboss:hard-deploy
 
-That command will deploy two files, booking-ds.xml and booking.war.
+That command will deploy two files, jbelt-postgresql-ds.xml and belt.war.
 
 Now visit this URL in the browser:
 
-    http://localhost:8080/seam-booking
+    http://localhost:8080/jbelt
 
 You can undeploy using this command:
 
@@ -51,7 +51,7 @@ Then you can package the project (mvn package -Pglassfish) and deploy the WAR us
 Alternatively, you can deploy the application using asadmin:
 
     mvn package -Pglassfish
-    $GLASSFISH_HOME/bin/asadmin deploy target/seam-booking.war
+    $GLASSFISH_HOME/bin/asadmin deploy target/jbelt.war
 
 ### Known issues (QA, please read)
 
