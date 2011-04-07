@@ -23,15 +23,18 @@ function controlSpinner(behavior)
 }
       </script>
    </ui:define>
+	<ui:define name="login">
+			<div id="logintxtblank">
+				<div id="loginheading">
+			         <span class="projectboldtxt">
+			            <h:messages id="messages" globalOnly="true"/>
+			         </span>
+				</div>
+			</div>
+	</ui:define>
 
    <ui:define name="content">
-
       <div class="section">
-  
-         <span class="errors">
-            <h:messages id="messages" globalOnly="true"/>
-         </span>
-    
          <h3>Search Hotels</h3>
 
          <h:form id="searchForm" prependId="false">
@@ -78,8 +81,7 @@ function controlSpinner(behavior)
                      <f:facet id="actFct" name="header">Action</f:facet>
                      <h:link id="view" value="View" outcome="hotel" style="white-space: nowrap;">
                         <f:param name="id" value="#{_hotel.id}" />
-                     </h:link>
-                     
+                     </h:link>                     
                      <ui:remove><!--
                      <h:commandButton id="view" value="View" action="#{bookingAgent.selectHotel(_hotel)}"/>
                      --></ui:remove>
@@ -97,7 +99,7 @@ function controlSpinner(behavior)
             </h:form>
          </div>
       </h:panelGroup>
-
+		#{' '}
       <div class="section">
          <h3>Current Hotel Bookings</h3>
       </div>
@@ -145,7 +147,7 @@ function controlSpinner(behavior)
    <ui:define name="sidebar">
 
       <!--
-      <h1>State management in Seam</h1>
+      <h3>State management in Seam</h3>
       <p>
          State in Seam is <em>contextual</em>. When you click "Find Hotels", the application
          retrieves a list of hotels from the database and caches it in the session context. When you

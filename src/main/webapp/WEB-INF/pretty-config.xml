@@ -10,6 +10,11 @@
         <view-id>/home.xhtml</view-id>
     </url-mapping>
     
+    <url-mapping id="people">
+        <pattern value="people"></pattern>
+        <view-id>/people.xhtml</view-id>
+    </url-mapping>
+
     <url-mapping id="showcase">
         <pattern value="/showcase"></pattern>
         <view-id>/showcase.xhtml</view-id>
@@ -65,5 +70,6 @@
         <pattern value="/password"></pattern>
         <view-id>/password.xhtml</view-id>
     </url-mapping>
+
 
 </pretty-config>

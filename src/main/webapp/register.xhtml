@@ -21,7 +21,7 @@
    <ui:define name="content">
       
       <div class="section">
-         <h1>Register</h1>
+         <h3>Register</h3>
       </div>
       
       <div class="section">
@@ -35,24 +35,24 @@
             <fieldset>
                <p:input id="name" label="Full name">
                   <h:inputText id="input" value="#{newUser.name}"/>
-               </p:input>
+               </p:input><br/>
 
                <p:input id="username" label="Username">
                   <h:inputText id="input" value="#{newUser.username}"
                      binding="#{registrar.usernameInput}"/>
-               </p:input>
+               </p:input><br/>
 
                <p:input id="email" label="Email">
                   <h:inputText id="input" value="#{newUser.email}"/>
-               </p:input>
+               </p:input><br/>
 
                <p:input id="password" label="Password">
                   <h:inputSecret id="input" value="#{newUser.password}" redisplay="true"/>
-               </p:input>
+               </p:input><br/>
 
                <p:input id="confirmPassword" label="Confirm password">
                   <h:inputSecret id="input" value="#{registrar.confirmPassword}" redisplay="true"/>
-               </p:input>
+               </p:input><br/>
                
                <div class="buttonBox">
                   <h:commandButton id="register" value="Register" action="#{registrar.register}"/>

@@ -1,4 +1,4 @@
-package org.jboss.seam.remoting.examples.model;
+package org.jbelt.people.model;
 
 import java.io.Serializable;
 import java.util.Collection;

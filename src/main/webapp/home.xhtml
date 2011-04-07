@@ -6,6 +6,9 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/artificial/template.xhtml">
+
+	<ui:param name="pageClass" value="home" />
+
 	<ui:define name="login">
 		<h:form id="loginForm" rendered="#{not identity.loggedIn}">
 			<div id="logintxtblank">
@@ -38,7 +41,7 @@
 		<h:form id="logoutForm" rendered="#{identity.loggedIn}">
 			<div id="logouttxtblank">
 				<div id="logoutheading">
-					<h4>Welcome, #{identity.user.id}!</h4>
+					<h4>Welcome, #{currentUser.name}#{' '}(#{identity.user.id})!</h4>
 					<div id="registered">
 						<h:commandLink value="Log out" action="#{identity.logout}"
 							class="login" />

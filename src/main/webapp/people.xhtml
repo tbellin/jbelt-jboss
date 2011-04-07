@@ -1,0 +1,154 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s="http://jboss.org/seam/faces"
+	xmlns:p="http://java.sun.com/jsf/composite/components/property"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/artificial/template.xhtml">
+	<ui:define name="head">
+		<script type="text/javascript">
+function controlSpinner(behavior)
+{
+   if (behavior.status == 'begin')
+   {
+      document.getElementById('spinner').style.display = 'inline';
+   }
+   else if (behavior.status == 'complete')
+   {
+      document.getElementById('spinner').style.display = 'none';
+   }
+}
+      </script>
+	</ui:define>
+	<ui:param name="pageClass" value="home" />
+
+	<ui:define name="content">
+
+		<div class="section">
+
+			<div class="errors">
+				<h:messages id="messages" globalOnly="true" />
+			</div>
+
+			<div class="midheading">
+				<h2>People Area</h2>
+			</div>
+			<div class="midtxt">
+
+				<h:form id="searchForm" prependId="false">
+					<fieldset>
+						<h:inputText id="query" value="#{searchCriteria.query}"
+							style="width: 165px;" autocomplete="off">
+							<f:ajax event="keyup" listener="#{personAction.find}"
+								render=":searchResults" onevent="controlSpinner" />
+						</h:inputText>
+						#{' '}
+						<h:selectOneMenu id="pageSize" value="#{searchCriteria.pageSize}">
+							<f:ajax listener="#{personAction.find}" render=":searchResults"
+								onevent="controlSpinner" />
+							<f:selectItem itemLabel="5 persons per page" itemValue="5" />
+							<f:selectItem itemLabel="10 persons per page" itemValue="10" />
+							<f:selectItem itemLabel="20 persons per page" itemValue="20" />
+						</h:selectOneMenu>
+						#{' '} <span id="activity"><h:graphicImage id="spinner"
+								value="/img/spinner.gif" style="display: none;" /> </span>
+					</fieldset>
+				</h:form>
+			</div>
+			<div class="midheading">
+				<h2>Persons list</h2>
+			</div>
+			<div class="midtxt">
+
+				<h:panelGroup id="searchResults">
+					<div class="section">
+
+						<h:outputText id="noPersonsMsg" value="No Persons Found"
+							rendered="#{empty persons}" />
+						<h:form id="hotelSelectionForm">
+							<h:dataTable id="persons" value="#{persons}" var="_person"
+								rendered="#{not empty persons}" columnClasses=",,,,action">
+								<h:column id="firstNameCol">
+									<f:facet id="firstNameFct" name="header">firstName</f:facet>
+                     #{_person.firstName}
+                  </h:column>
+								<h:column id="lastNameCol">
+									<f:facet id="lastNameFct" name="header">lastName</f:facet>
+                     #{_person.lastName}
+                  </h:column>
+
+							</h:dataTable>
+						</h:form>
+						<h:form id="paginationForm">
+							<h:commandButton id="previousResults" value="Previous page"
+								action="#{personAction.previousPage}"
+								rendered="#{personAction.previousPageAvailable}">
+								<f:ajax render=":searchResults" onevent="controlSpinner" />
+							</h:commandButton>
+							<h:commandButton id="moreResults" value="More results"
+								action="#{personAction.nextPage}"
+								rendered="#{personAction.nextPageAvailable}">
+								<f:ajax render=":searchResults" onevent="controlSpinner" />
+							</h:commandButton>
+						</h:form>
+					</div>
+				</h:panelGroup>
+			</div>
+			<div class="midtxt">
+				<h:form id="personForm" prependId="false">
+
+					<fieldset>
+						<p:input id="firstName" label="#{bundles.messages.firstName}">
+							<h:inputText id="input" value="#{newPerson.firstName}" />
+						</p:input>
+						<br /> #{' '}
+						<p:input id="lastName" label="#{bundles.messages.lastName}">
+							<h:inputText id="input" value="#{newPerson.lastName}" />
+						</p:input>
+						<br /> #{' '}
+						<div>
+							<h:commandButton id="register" value="Register" class="loginbutton"
+								action="#{personAction.register()}" />
+
+							<h:button id="cancel" value="Cancel" outcome="/home.xhtml"
+								class="loginbutton" />
+						</div>
+
+					</fieldset>
+
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+
+	<ui:define name="sidebar">
+		<div class="content">
+			<h3>Good Luck</h3>
+			<p>Pellentesque nibh felis, eleifend id, commodo in, interdum
+				vitae, leo. Praesent eu elit. Ut eu ligula. Class aptent taciti
+				sociosqu ad litora torquent per conubia nostra, per inceptos
+				hymenaeos. Maecenas elementum augue nec nisl. Proin auctor lorem at
+				nibh. Curabitur nulla purus, feugiat id, elementum in, lobortis
+				quis, pede. Vivamus sodales adipiscing sapien. Vestibulum posuere
+				nulla eget wisi. Integer volutpat ligula eget enim. Suspendisse
+				vitae arcu. Quisque pellentesque. Nullam consequat, sem vitae
+				rhoncus tristique, mauris nulla fermentum est, bibendum ullamcorper
+				sapien magna et quam. Sed dapibus vehicula odio. Proin bibendum
+				gravida nisl. Fusce lorem. Phasellus sagittis, nulla in hendrerit
+				laoreet, libero lacus feugiat urna, eget hendrerit pede magna vitae
+				lorem. Praesent mauris.</p>
+			<p>
+				<a href="#"
+					onclick="window.open('exp/hello.html','exp','width=752,height=500,scrollbars=yes');">
+					Hello People </a>
+			</p>
+		</div>
+	</ui:define>
+
+</ui:composition>

@@ -35,13 +35,6 @@
             <redirect/>
         </navigation-case>
 
-        <navigation-case>
-            <from-action>#{identity.login}</from-action>
-            <if>#{not identity.loggedIn}</if>
-            <to-view-id>/home.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-
     </navigation-rule>
 
     <navigation-rule>
@@ -131,6 +124,26 @@
         </navigation-case>
 
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/showcase.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-action>#{identity.login}</from-action>
+            <if>#{identity.loggedIn}</if>
+            <to-view-id>/showcase.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{identity.login}</from-action>
+            <if>#{not identity.loggedIn}</if>
+            <to-view-id>/search.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
 
     <application> 
         <resource-bundle> 
