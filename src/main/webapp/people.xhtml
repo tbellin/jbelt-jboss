@@ -64,34 +64,50 @@ function controlSpinner(behavior)
 			</div>
 			<div class="midtxt">
 
-				<h:panelGroup id="searchResults">
+				<h:panelGroup id="searchResults" style="width:420px;">
 					<div class="section">
 
 						<h:outputText id="noPersonsMsg" value="No Persons Found"
 							rendered="#{empty persons}" />
-						<h:form id="hotelSelectionForm">
+						<h:form id="hotelSelectionForm" prependId="true">
 							<h:dataTable id="persons" value="#{persons}" var="_person"
 								rendered="#{not empty persons}" columnClasses=",,,,action">
 								<h:column id="firstNameCol">
 									<f:facet id="firstNameFct" name="header">firstName</f:facet>
-                     #{_person.firstName}
-                  </h:column>
+<!--									<h:outputText value="#{_person.firstName}" />-->
+									<h:inputText value="#{_person.firstName}" />
+								</h:column>
 								<h:column id="lastNameCol">
 									<f:facet id="lastNameFct" name="header">lastName</f:facet>
-                     #{_person.lastName}
-                  </h:column>
+<!--									<h:outputText value="#{_person.lastName}" />-->
+									<h:inputText value="#{_person.lastName}" />
+								</h:column>
+								<h:column id="actCol">
+									<f:facet id="actFct" name="header">Action</f:facet>
+									<h:commandButton id="view" value="View"
+										action="#{personAction.selectPerson(_person)}" />
+								</h:column>
+								<h:column id="updateCol">
+									<f:facet id="updateFct" name="header">Update</f:facet>
+									<h:commandButton id="update" value="Update"
+										action="#{personAction.updatePerson(_person)}" />
+								</h:column>
 
 							</h:dataTable>
 						</h:form>
-			            <h:form id="paginationForm">
-			               <h:commandButton id="previousResults" value="Previous page" action="#{personAction.previousPage}" rendered="#{personAction.previousPageAvailable}">
-			                  <f:ajax render=":searchResults" onevent="controlSpinner"/>
-			               </h:commandButton>
+						<h:form id="paginationForm">
+							<h:commandButton id="previousResults" value="Previous page"
+								action="#{personAction.previousPage}"
+								rendered="#{personAction.previousPageAvailable}">
+								<f:ajax render=":searchResults" onevent="controlSpinner" />
+							</h:commandButton>
 			               #{' '}
-			               <h:commandButton id="moreResults" value="More results" action="#{personAction.nextPage}" rendered="#{personAction.nextPageAvailable}">
-			                  <f:ajax render=":searchResults" onevent="controlSpinner"/>
-			               </h:commandButton>
-			            </h:form>
+			               <h:commandButton id="moreResults" value="More results"
+								action="#{personAction.nextPage}"
+								rendered="#{personAction.nextPageAvailable}">
+								<f:ajax render=":searchResults" onevent="controlSpinner" />
+							</h:commandButton>
+						</h:form>
 					</div>
 				</h:panelGroup>
 			</div>
@@ -108,8 +124,8 @@ function controlSpinner(behavior)
 						</p:input>
 						<br /> #{' '}
 						<div>
-							<h:commandButton id="register" value="Register" class="loginbutton"
-								action="#{personAction.register()}" />
+							<h:commandButton id="register" value="Register"
+								class="loginbutton" action="#{personAction.register()}" />
 
 							<h:button id="cancel" value="Cancel" outcome="/home.xhtml"
 								class="loginbutton" />

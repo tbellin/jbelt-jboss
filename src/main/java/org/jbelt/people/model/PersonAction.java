@@ -95,6 +95,8 @@ public class PersonAction {
 	private boolean registrationInvalid;
 
     private boolean nextPageAvailable = false;
+    
+    private Person personSelection;
 
     public void find() {
         criteria.firstPage();
@@ -178,6 +180,21 @@ public class PersonAction {
 	                .textParams(persons.size(), criteria.getQuery(), criteria.getPageSize()).build().getText());
 	    }
 
+    public void selectPerson(Person personSelection) {
+        // NOTE get a fresh reference that's managed by the extended persistence context
+        if (personSelection != null) {
+            log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
+        }
+    }
+
+    public void updatePerson(Person personSelection) {
+        // NOTE get a fresh reference that's managed by the extended persistence context
+        if (personSelection != null) {
+        	em.merge(personSelection);
+        	em.flush();
+            log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
+        }
+    }
 
 	@Produces
 	@Named
