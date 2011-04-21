@@ -40,6 +40,7 @@ import javax.validation.constraints.Size;
 import org.jboss.logging.Logger;
 import org.jboss.seam.examples.booking.i18n.DefaultBundleKey;
 import org.jboss.seam.examples.booking.inventory.SearchCriteria;
+import org.jboss.seam.examples.booking.model.Booking;
 import org.jboss.seam.examples.booking.model.Hotel;
 import org.jboss.seam.examples.booking.model.Hotel_;
 import org.jboss.seam.examples.booking.model.User;
@@ -78,8 +79,6 @@ public class PersonAction {
 
     private List<Person> persons = new ArrayList<Person>();
     
-	private UIInput usernameInput;
-
 	private Person newPerson = new Person();
 
     @Produces
@@ -180,8 +179,8 @@ public class PersonAction {
 	                        builder.like(builder.lower(person.get(Person_.lastName)), criteria.getSearchPattern())));
 
 	        List<Person> results = em.createQuery(cquery).setMaxResults(criteria.getFetchSize())
-	                .setFirstResult(criteria.getFetchOffset()).getResultList();
-
+            .setFirstResult(criteria.getFetchOffset()).getResultList();
+	        
 	        nextPageAvailable = results.size() > criteria.getPageSize();
 	        if (nextPageAvailable) {
 	            // NOTE create new ArrayList since subList creates unserializable list
@@ -193,10 +192,30 @@ public class PersonAction {
 	                .textParams(persons.size(), criteria.getQuery(), criteria.getPageSize()).build().getText());
 	    }
 
-	public void selectPerson(Person personSelection) {
+	public void selectPerson(final Person personSelection) {
 		// NOTE get a fresh reference that's managed by the extended persistence context
 		if (personSelection != null) {
 			log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
+		}
+	}
+
+	public void removePerson(Person personSelection) {
+		// NOTE get a fresh reference that's managed by the extended persistence context
+		if (personSelection != null) {
+			try {
+				log.info(" [ removePerson ]");
+				log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
+
+		        Person p = em.find(Person.class, personSelection.getPersonId());
+		        if (p != null) {
+		            em.remove(p);
+		            em.flush(); 
+		        }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.info(" [ removePerson ][ Exception ]");
+			}
 		}
 	}
 
@@ -214,14 +233,5 @@ public class PersonAction {
 	public Person getNewPerson() {
 		return newPerson;
 	}
-
-	public UIInput getUsernameInput() {
-		return usernameInput;
-	}
-
-	public void setUsernameInput(final UIInput usernameInput) {
-		this.usernameInput = usernameInput;
-	}
-
 
 }

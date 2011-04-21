@@ -65,38 +65,40 @@ function controlSpinner(behavior)
 				<h2>Persons list</h2>
 			</div>
 			<div class="midtxt">
-
 				<h:panelGroup id="searchResults" style="width:420px;">
 					<div class="section">
 
 						<h:outputText id="noPersonsMsg" value="No Persons Found"
 							rendered="#{empty persons}" />
-						<h:form id="hotelSelectionForm" prependId="false">
-						<fieldset>
-							<h:dataTable id="persons" value="#{persons}" var="_person"
-								rendered="#{not empty persons}" columnClasses=",,,,action">
-								<h:column id="firstNameCol">
-									<f:facet id="firstNameFct" name="header">firstName</f:facet>
-<!--									<h:outputText value="#{_person.firstName}" />-->
-									<h:inputText value="#{_person.firstName}" />
-								</h:column>
-								<h:column id="lastNameCol">
-									<f:facet id="lastNameFct" name="header">lastName</f:facet>
-<!--									<h:outputText value="#{_person.lastName}" />-->
-									<h:inputText value="#{_person.lastName}" />
-								</h:column>
-								<h:column id="actCol">
-									<f:facet id="actFct" name="header">Action</f:facet>
-									<h:commandButton id="view" value="View"
-										action="#{personAction.selectPerson(_person)}" />
-								</h:column>
-								<h:column id="updateCol">
-									<f:facet id="updateFct" name="header">Update</f:facet>
-									<h:commandButton id="update" value="Update"
-										action="#{personAction.updatePerson(_person)}" />
-								</h:column>
-							</h:dataTable>
-						</fieldset>
+						<h:form id="hotelSelectionForm" prependId="true">
+							<fieldset>
+								<h:dataTable id="persons" value="#{persons}" var="_person"
+									rendered="#{not empty persons}" columnClasses=",,,,action">
+									<h:column id="firstNameCol">
+										<f:facet id="firstNameFct" name="header">firstName</f:facet>
+										<h:inputText value="#{_person.firstName}" />
+									</h:column>
+									<h:column id="lastNameCol">
+										<f:facet id="lastNameFct" name="header">lastName</f:facet>
+										<h:inputText value="#{_person.lastName}" />
+									</h:column>
+									<h:column id="actCol">
+										<f:facet id="actFct" name="header">Action</f:facet>
+										<h:commandButton id="view" value="View"
+											action="#{personAction.selectPerson(_person)}" />
+									</h:column>
+									<h:column id="updateCol">
+										<f:facet id="updateFct" name="header">Update</f:facet>
+										<h:commandButton id="update" value="Update"
+											action="#{personAction.updatePerson(_person)}" />
+									</h:column>
+									<h:column id="removeCol">
+										<f:facet id="removeFct" name="header">Remove</f:facet>
+										<h:commandButton id="remove" value="Remove"
+											action="#{personAction.removePerson(_person)}" />
+									</h:column>
+								</h:dataTable>
+							</fieldset>
 						</h:form>
 						<h:form id="paginationForm">
 							<h:commandButton id="previousResults" value="Previous page"
@@ -112,33 +114,28 @@ function controlSpinner(behavior)
 							</h:commandButton>
 						</h:form>
 					</div>
+					<div class="section">
+						<h:form id="personForm" prependId="false">
+
+							<fieldset>
+								<p:input id="firstName" label="#{bundles.messages.firstName}">
+									<h:inputText id="input" value="#{newPerson.firstName}" />
+								</p:input>
+								<p:input id="lastName" label="#{bundles.messages.lastName}">
+									<h:inputText id="input" value="#{newPerson.lastName}" />
+								</p:input>
+								<div>
+									<h:commandButton id="register" value="Register"
+										action="#{personAction.register()}" />
+									<h:button id="cancel" value="Cancel" outcome="/home.xhtml"
+										class="loginbutton" />
+								</div>
+							</fieldset>
+						</h:form>
+					</div>
 				</h:panelGroup>
 			</div>
-			<div class="midtxt">
-				<h:form id="personForm" prependId="false">
-
-					<fieldset>
-						<p:input id="firstName" label="#{bundles.messages.firstName}">
-							<h:inputText id="input" value="#{newPerson.firstName}" />
-						</p:input>
-						<br /> #{' '}
-						<p:input id="lastName" label="#{bundles.messages.lastName}">
-							<h:inputText id="input" value="#{newPerson.lastName}" />
-						</p:input>
-						<br /> #{' '}
-						<div>
-							<h:commandButton id="register" value="Register"
-								class="loginbutton" action="#{personAction.register()}" />
-
-							<h:button id="cancel" value="Cancel" outcome="/home.xhtml"
-								class="loginbutton" />
-						</div>
-					</fieldset>
-
-				</h:form>
-			</div>
 		</div>
-
 	</ui:define>
 
 	<ui:define name="sidebar">
