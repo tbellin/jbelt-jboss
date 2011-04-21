@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Model;
@@ -42,6 +43,7 @@ import org.jboss.seam.examples.booking.inventory.SearchCriteria;
 import org.jboss.seam.examples.booking.model.Hotel;
 import org.jboss.seam.examples.booking.model.Hotel_;
 import org.jboss.seam.examples.booking.model.User;
+import org.jboss.seam.faces.context.conversation.Begin;
 import org.jboss.seam.international.status.Messages;
 import org.jboss.seam.international.status.builder.BundleKey;
 import org.jboss.seam.international.status.builder.TemplateMessage;
@@ -78,14 +80,14 @@ public class PersonAction {
     
 	private UIInput usernameInput;
 
-	private final Person newPerson = new Person();
+	private Person newPerson = new Person();
 
     @Produces
     @Named
     public List<Person> getPersons() {
         return persons;
     }
-	
+
 	@NotNull
 	@Size(min = 5, max = 15)
 	private String confirmPassword;
@@ -104,14 +106,25 @@ public class PersonAction {
     }
 
 	
-	public void register() {
-		registered = true;
-		em.persist(newPerson);
+    public void register() {
+    	registered = true;
 
-		messages.info(new DefaultBundleKey("registration_registered"))
-		.defaults("You have been successfully registered as the person {0}! You can now login.")
-		.params(newPerson.getFirstName());
-	}
+    	try {
+    		if (newPerson.getPersonId() == null)
+    		{
+    			em.persist(newPerson);
+    			em.flush();
+    			messages.info(new DefaultBundleKey("registration_registered"))
+    			.defaults("You have been successfully registered as the person {0}! You can now login.")
+    			.params(newPerson.getFirstName());
+    			
+    			newPerson = new Person();
+    		}
+    	} catch (Exception e1) {
+    		// TODO Auto-generated catch block
+    		e1.printStackTrace();
+    	}
+    }
 
 	public boolean isRegistrationInvalid() {
 		return registrationInvalid;
@@ -156,7 +169,7 @@ public class PersonAction {
 	
 	public void queryPersons(final SearchCriteria criteria) {
 		
-		log.info("misua della lista :" + criteria.getPageSize());
+		log.info("misura della lista :" + criteria.getPageSize());
 		
 	        CriteriaBuilder builder = em.getCriteriaBuilder();
 	        CriteriaQuery<Person> cquery = builder.createQuery(Person.class);
@@ -180,12 +193,12 @@ public class PersonAction {
 	                .textParams(persons.size(), criteria.getQuery(), criteria.getPageSize()).build().getText());
 	    }
 
-    public void selectPerson(Person personSelection) {
-        // NOTE get a fresh reference that's managed by the extended persistence context
-        if (personSelection != null) {
-            log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
-        }
-    }
+	public void selectPerson(Person personSelection) {
+		// NOTE get a fresh reference that's managed by the extended persistence context
+		if (personSelection != null) {
+			log.info(" -->" + personSelection.getFirstName() + "<>" + personSelection.getLastName()+"<--");
+		}
+	}
 
     public void updatePerson(Person personSelection) {
         // NOTE get a fresh reference that's managed by the extended persistence context

@@ -9,6 +9,9 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
 	template="/templates/artificial/template.xhtml">
+
+	<ui:param name="pageClass" value="home" />
+
 	<ui:define name="head">
 		<script type="text/javascript">
 function controlSpinner(behavior)
@@ -24,7 +27,6 @@ function controlSpinner(behavior)
 }
       </script>
 	</ui:define>
-	<ui:param name="pageClass" value="home" />
 
 	<ui:define name="content">
 
@@ -69,7 +71,8 @@ function controlSpinner(behavior)
 
 						<h:outputText id="noPersonsMsg" value="No Persons Found"
 							rendered="#{empty persons}" />
-						<h:form id="hotelSelectionForm" prependId="true">
+						<h:form id="hotelSelectionForm" prependId="false">
+						<fieldset>
 							<h:dataTable id="persons" value="#{persons}" var="_person"
 								rendered="#{not empty persons}" columnClasses=",,,,action">
 								<h:column id="firstNameCol">
@@ -92,8 +95,8 @@ function controlSpinner(behavior)
 									<h:commandButton id="update" value="Update"
 										action="#{personAction.updatePerson(_person)}" />
 								</h:column>
-
 							</h:dataTable>
+						</fieldset>
 						</h:form>
 						<h:form id="paginationForm">
 							<h:commandButton id="previousResults" value="Previous page"
@@ -130,7 +133,6 @@ function controlSpinner(behavior)
 							<h:button id="cancel" value="Cancel" outcome="/home.xhtml"
 								class="loginbutton" />
 						</div>
-
 					</fieldset>
 
 				</h:form>
